@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="newTodoText" @keyup.enter="addNewTodo" placeholder="Add a todo">
+    <ul>
+        <li is="todo-list" v-for="(todo, index) in todos" :title="todo" @remove="todos.splice(index, 1)" :key="index"></li>
+    </ul>
+</div>
+<ul id="arr">
+    <li v-for="n in evenNumbers">{{n}}</li>
+</ul>
+<script src="http://storage.jd.com/baitiao-index/vue.min.js"></script>
+<script type="text/javascript" src="../js/bundle.js"></script></body>
+</html>

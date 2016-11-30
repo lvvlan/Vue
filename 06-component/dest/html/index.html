@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+</div>
+<div id="app2">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+</div>
+<a href="#" id="child">
+    <span is="child" message="hello~"></span>
+</a>
+<div id="app3">
+    <input type="text" v-model="parentMsg">
+    <br>
+    <app3 :my-message="parentMsg"></app3>
+</div>
+<div id="app4">
+    <p>{{total}}</p>
+    <button-counter @increment="incrementTotal"></button-counter>
+    <button-counter @increment="incrementTotal"></button-counter>
+</div>
+<script src="http://storage.jd.com/baitiao-index/vue.min.js"></script>
+<script type="text/javascript" src="../js/bundle.js"></script></body>
+</html>

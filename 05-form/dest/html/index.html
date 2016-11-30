@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+</head>
+<body>
+<div id="app">
+    <span>可以输入多行文本：</span>
+    <p style="white-space: pre">{{message}}</p>
+    <br />
+    <textarea v-model="message" cols="30" rows="10"></textarea>
+</div>
+<div id="check">
+    <input type="checkbox" id="checkbox" v-model="checked" />
+    <label for="checkbox">{{checked}}</label>
+    <br />
+    <input type="checkbox" id="jack" value="jack" v-model="checkNames">
+    <label for="jack">jack</label>
+    <input type="checkbox" id="john" value="john" v-model="checkNames">
+    <label for="jack">john</label>
+    <input type="checkbox" id="leon" value="leon" v-model="checkNames">
+    <label for="jack">leon</label>
+    <input type="checkbox" id="mike" value="mike" v-model="checkNames">
+    <label for="mike">jack</label>
+    <p>Checked names: {{checkNames.length ? checkNames.join(',') : 'no checked!'}}</p>
+    <input type="checkbox" id="checkBind" v-model="checked" :true-value="a" :false-value="b" />
+    <label for="checkBind">{{checked? a : b}}</label>
+</div>
+<div id="radio">
+    <input type="radio" id="one" value="one" checked="checked" v-model="picked">
+    <label for="radio">one</label>
+    <input type="radio" id="two" value="two" v-model="picked">
+    <label for="radio">two</label>
+    <p>picked: {{picked}}</p>
+</div>
+<div id="select">
+    <select id="select1" v-model="select1">
+        <option value="A1" selected="selected">A</option>
+        <option value="B2">B</option>
+        <option value="C3">C</option>
+    </select>
+    <p>selected: {{select1}}</p>
+    <select id="select2" multiple v-model="select2">
+        <option value="A1">A</option>
+        <option value="B2" selected="selected">B</option>
+        <option value="C3">C</option>
+    </select>
+    <p>selected: {{select2}}</p>
+</div>
+<div id="selectFor">
+    <select v-model="selected">
+        <option v-for="option in options" :value="option.value">{{option.text}}</option>
+    </select>
+    <p>Selected: {{selected}}</p>
+</div>
+<script src="http://storage.jd.com/baitiao-index/vue.min.js"></script>
+<script type="text/javascript" src="../js/bundle.js"></script></body>
+</html>
