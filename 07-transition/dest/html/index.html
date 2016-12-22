@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            -webkit-transition: opacity .5s;
+            -moz-transition: opacity .5s;
+            -ms-transition: opacity .5s;
+            -o-transition: opacity .5s;
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-active {
+            opacity: 0;
+        }
+
+        .slide-fade-enter-active{
+            transition: all .3s;
+        }
+        .slide-fade-leave-active{
+            transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-active{
+            padding-left: 10px;
+            opacity: 0;
+        }
+
+        #app2 p{
+            width: 100px;
+            height: 100px;
+        }
+        .bounce-enter-active{
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active{
+            animation: bounce-out .5s;
+        }
+        @keyframes bounce-in {
+            0% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -ms-transform: scale(0);
+                -o-transform: scale(0);
+                transform: scale(0);
+            }
+            50% {
+                -webkit-transform: scale(1.5);
+                -moz-transform: scale(1.5);
+                -ms-transform: scale(1.5);
+                -o-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+            100% {
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+        @keyframes bounce-out {
+            0% {
+                -webkit-transform: scale(1);
+                -moz-transform: scale(1);
+                -ms-transform: scale(1);
+                -o-transform: scale(1);
+                transform: scale(1);
+            }
+            50% {
+                -webkit-transform: scale(1.5);
+                -moz-transform: scale(1.5);
+                -ms-transform: scale(1.5);
+                -o-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+            100% {
+                -webkit-transform: scale(0);
+                -moz-transform: scale(0);
+                -ms-transform: scale(0);
+                -o-transform: scale(0);
+                transform: scale(0);
+            }
+        }
+        #app3 p{
+            width: 25px;
+        }
+
+        #app4 p {
+            width: 25px;
+            height: 25px;
+        }
+        .custom-appear{
+            opacity: 0;
+            transform: scale(1.5);
+        }
+        .custom-appear-active{
+            transition: all .6s;
+        }
+        .custom-enter{
+            opacity: 0;
+            transform: scale(1.5);
+        }
+        .custom-enter-active{
+            transition: all .6s;
+        }
+
+        .list-item{
+            display: inline-block;
+            margin-right: 10px;
+            transition: all 1s;
+        }
+        .list-enter-active, .list-leave-active{
+            -webkit-transition: all 1s;
+            -moz-transition: all 1s;
+            -ms-transition: all 1s;
+            -o-transition: all 1s;
+            transition: all 1s;
+        }
+        .list-enter, .list-leave-active{
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .list-leave-active{
+            position: absolute;
+        }
+
+        #flip-list-demo li{
+            float: left;
+            margin-right: 10px;
+            list-style: none;
+        }
+        .flip-list-move{
+            transition: all 1s;
+        }
+
+        #sudo-demo{
+            margin-top: 36px;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;    /*让弹性盒元素在必要的时候拆行*/
+            width: 238px;
+            margin-top: 10px;
+        }
+        .cell{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #aaa;
+            margin-right: -1px;
+            margin-bottom: -1px;
+        }
+        .cell:nth-child(3n){
+            margin-right: 0;
+        }
+        .cell:nth-child(27n) {
+            margin-bottom: 0;
+        }
+        .cell-move{
+            transition: all 1s;
+        }
+
+        #dynamic-fade-demo{
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="show = !show">Toggle</button>
+    <transition appear name="fade">
+        <p v-if="show">Hello~!</p>
+    </transition>
+</div>
+<div id="app1">
+    <button @click="show = !show">Toggle</button>
+    <transition name="slide-fade">
+        <p v-if="show">Hello</p>
+    </transition>
+</div>
+<div id="app2">
+    <button @click="show = !show">Toggle</button>
+    <transition name="bounce">
+        <p v-if="show">Look at me!</p>
+    </transition>
+</div>
+<div id="app3">
+    <button @click="show = !show">
+        Toggle
+    </button>
+    <transition
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+            v-bind:css="false"
+    >
+        <p v-if="show">
+            Demo
+        </p>
+    </transition>
+</div>
+<div id="app4">
+    <!--appear-class="custom-appear"
+                appear-active-class="custom-appear-active"-->
+    <transition appear name="custom">
+        <p>appear</p>
+    </transition>
+</div>
+<div id="list-demo" class="demo">
+    <button @click="add">Add</button>
+    <button @click="remove">Remove</button>
+    <transition-group name="list" tag="p">
+        <span v-for="item in items" :key="item" class="list-item">
+            {{item}}
+        </span>
+    </transition-group>
+</div>
+<div id="flip-list-demo">
+    <button @click="shuffle">Shuffle</button>
+    <transition-group name="flip-list" tag="ul">
+        <li v-for="item in items" :key="item">{{item}}</li>
+    </transition-group>
+</div>
+<div id="sudo-demo">
+    <h1>Lazy Sudoku</h1>
+    <button @click="shuffle">Shuffle</button>
+    <transition-group name="cell" tag="div" class="container">
+        <div v-for="cell in cells" :key="cell.id" class="cell">
+            {{cell.number}}
+        </div>
+    </transition-group>
+</div>
+<div id="staggered-list-demo">
+    <input type="text" v-model="query">
+    <transition-group name="staggered-list" tag="ul" :css="false" @before-enter="beforeEnter" @enter="enter" @leave="leave">
+        <li v-for="(item, index) in computedList" :key="item.msg" :data-index="index" data-test="test">
+            {{item.msg}}
+        </li>
+    </transition-group>
+</div>
+<div id="dynamic-fade-demo">
+    Fade In: <input type="range" v-model="fadeInDuration" min="0" :max="maxFadeDuration">
+    Fade In: <input type="range" v-model="fadeOutDuration" min="0" :max="maxFadeDuration">
+    <transition :css="false" @before-enter="beforeEnter" @enter="enter" @leave="leave">
+        <p v-if="show">Hello~!</p>
+    </transition>
+    <button @click="stop = true">Stop it!</button>
+</div>
+<script src="http://storage.jd.com/baitiao-index/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+<script type="text/javascript" src="../js/bundle.js"></script></body>
+</html>
