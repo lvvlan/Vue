@@ -2,12 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Abc from '../component/hello'
+import Lost from '../component/404.vue';
 
-/* eslint-disable no-new */
 new Vue({
     el: '#app',
-    components: { Abc },
-    mounted() {
-        console.log(this);
-    }
+    components: { Abc }
 });
