@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>{{message}}</h2>
+        <h2 class='a'>{{message}}</h2>
         <p>common num => {{num}}</p>
         <button @click="incrementAction">+</button> &nbsp; <button @click="decrementAction">-</button>
         <p>increment num => {{increment.num}} (incrementNum每次自增)</p>

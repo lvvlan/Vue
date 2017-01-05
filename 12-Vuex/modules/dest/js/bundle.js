@@ -10215,7 +10215,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;
-	  return _h('div', [_h('h2', [_vm._s(_vm.message)]), " ", _h('p', ["common num => " + _vm._s(_vm.num)]), " ", _h('button', {
+	  return _h('div', [_h('h2', {
+	    staticClass: "a"
+	  }, [_vm._s(_vm.message)]), " ", _h('p', ["common num => " + _vm._s(_vm.num)]), " ", _h('button', {
 	    on: {
 	      "click": _vm.incrementAction
 	    }

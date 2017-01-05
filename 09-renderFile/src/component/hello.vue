@@ -10,7 +10,13 @@ export default {
     return {
       msg: 'Hello World~!'
     }
-  }
+  },
+    mounted() {
+        console.log(this);
+        setTimeout(function () {
+
+        });
+    }
 }
 </script>
 

@@ -6,8 +6,5 @@ import Abc from '../component/hello'
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
-    components: { Abc },
-    mounted() {
-        console.log(this);
-    }
+    components: { Abc }
 });
