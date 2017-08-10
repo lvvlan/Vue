@@ -12,7 +12,7 @@
         name: 'next',
         data(){
             return{
-                msg:'this is a component~ -> from a.vue!'
+                msg:'this is a component~ -> from a.vue'
             }
         },
         mounted() {

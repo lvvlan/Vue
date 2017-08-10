@@ -16,7 +16,25 @@ const env = config.build.env;
 var webpackConfig = merge(baseWebpackConfig, {
     output: {
         path: config.assetsRoot,
-        filename: 'js/[name].[chunkhash].js',
-        chunkFilename: 'js/[name].[chunkhash].js'
-    }
+        filename: 'js/[name].js'
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': env
+        }),
+        new HtmlWebpackPlugin({
+            filename: config.assetsRoot+'/demo.html',
+            template: 'src/html/demo.html'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: function (module) {
+                return (
+                    module.resource &&
+                    /\.js/.test(module.resource) &&
+                    module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
+                );
+            }
+        })
+    ]
 });

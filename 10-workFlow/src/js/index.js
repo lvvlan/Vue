@@ -8,6 +8,8 @@ import Vue from 'vue';
 import Abc from '../component/hello';
 import Lazy from '../component/lazy.vue';
 
+import '../../assets/css/demo2.css';
+
 new Vue({
     el: '#app',
     components: { Abc },
@@ -27,7 +29,7 @@ new Vue({
 
 Vue.component('lazy', function (resolve) {
     require.ensure([], function () {
-        console.log(111);a;
+        console.log(111);
         setTimeout(function (){
             console.log(22);
             require(['../component/lazy.vue'], resolve);

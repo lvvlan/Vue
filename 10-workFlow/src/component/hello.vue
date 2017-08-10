@@ -20,7 +20,7 @@
         name: 'Abc',
         data(){
             return{
-                msg:'Hello World~!!! -> from hello.vue~!'
+                msg:'Hello World~!!! -> from hello.vue~!!'
             }
         },
         components: {

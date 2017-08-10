@@ -27,9 +27,10 @@ var test = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         //用来跳过编译时出错的代码并记录，使编译后运行时的包不会发生错误
         new webpack.NoErrorsPlugin(),
+        //提取CSS模块
         new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin({
-            filename: 'abc/demo.html',
+            filename: 'demo.html',
             template: 'src/html/demo.html'
         })/*,
         new HtmlWebpackPlugin({
